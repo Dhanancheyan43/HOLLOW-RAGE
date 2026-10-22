@@ -137,7 +137,7 @@
         HR.text(ctx, "Your current progress will be lost.", W / 2, H / 2 + 16, 18, { font: HR.FONT_BODY, color: "#b8b8c8" });
         HR.text(ctx, "[Z] yes      [C] no", W / 2, H / 2 + 64, 16, { color: "#ddd" });
       }
-      HR.text(ctx, "Z / Enter to select   ·   arrows to move", 300, H - 26, 13, { font: HR.FONT_BODY, color: "#6a6a7a" });
+      HR.text(ctx, "click the game first   ·   Z / Enter to select   ·   arrows to move", 300, H - 26, 13, { font: HR.FONT_BODY, color: "#6a6a7a" });
     },
 
     frame(dt) {
@@ -178,6 +178,8 @@
   }
 
   window.addEventListener("resize", resize);
+  // embedded pages only get keys after a click; also the moment audio may start
+  window.addEventListener("pointerdown", () => { window.focus(); HR.audio.unlock(); });
   resize();
   HR.setupTouch(document.body);
   requestAnimationFrame(loop);
